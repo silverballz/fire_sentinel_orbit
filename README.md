@@ -1,6 +1,6 @@
 # fire_sentinel_orbit  
 ## 🔥 Forest Fire Spread Simulation using AI/ML  
-*Hackathon Progress Tracker – Similipal Biosphere Reserve*
+*Hackathon Progress Tracker – Similipal Biosphere Reserve*  
 
 ---
 
@@ -12,11 +12,11 @@ Model the *next-day forest fire probability* and simulate *short-term fire sprea
 
 ## 📍 Study Area: Similipal Biosphere Reserve, Odisha, India
 
-- *Bounding Box*:  
+- **Bounding Box**:  
   - Latitude: 21.68° N to 22.00° N  
   - Longitude: 86.00° E to 86.42° E
 
-- *Fire Event Timeline*:  
+- **Fire Event Timeline**:  
   - February–March 2021 (based on VIIRS records)
 
 ---
@@ -59,29 +59,13 @@ All data required for modeling has been successfully downloaded and processed.
 - [x] Computed train-set mean/std → `norm_stats.json`  
 - [x] Z-score normalized & one-hot encoded fuel → `data/tiles_norm/{train,val}/`  
 
-### 6. Model Training (Next-Day Fire Probability)  
-- [x] DataLoader & U-Net setup  
-- [x] Training loop started  
-- [ ] **In progress: U-Net training (Epoch 3/10)**
-
 ---
 
-## 🧠 Next Steps
+## 🧠 Model Training (Next-Day Fire Probability)
 
-1. **Complete Model Training**  
-   - [ ] Finish remaining epochs (4–10)  
-2. **Batch Inference & Evaluation**  
-   - [ ] Infer on val set, compute IoU/F1  
-3. **Short-Term Spread Simulation**  
-   - [ ] Cellular Automata using predicted maps  
-4. **Visualization & Reporting**  
-   - [ ] Time-lapse animation & summary slides  
-
-> 🔗 Data on Google Drive: https://drive.google.com/drive/folders/1LekZLEqd4SlbBx_4DsO4C0qKodEHtEXL?usp=drive_link  
-
-> ✅ Checkpoint 2: Data acquisition complete.  
-> ✅ Checkpoint 3: Feature stacking & tiling complete.  
-> ✅ Checkpoint 4: Normalization & encoding complete; model training in progress (Epoch 3/10).  
+- [x] DataLoader & U-Net setup  
+- [x] Training loop executed (Epochs 1–10)  
+- [x] Model weights saved (`models/unet_final.pth`)  
 
 ---
 
@@ -94,6 +78,20 @@ All data required for modeling has been successfully downloaded and processed.
 
 ## 👥 Team CORBETT
 
-- Leader: Anurag Sharma  
-- Members: Anurag Sharma, Jayesh Kapoor, Nityansh Pant, Maittri Tripathi  
-- Hackathon: HackOrbit 2025  
+- **Leader:** Anurag Sharma  
+- **Members:** Anurag Sharma, Jayesh Kapoor, Nityansh Pant, Maittri Tripathi  
+- **Hackathon:** HackOrbit 2025  
+
+---
+
+## 🕹️ Checkpoints
+
+> ✅ Checkpoint 1: Data acquisition complete.  
+> ✅ Checkpoint 2: Feature stacking & tiling complete.  
+> ✅ Checkpoint 3: Normalization & encoding complete.  
+> ✅ Checkpoint 4: Model training complete (Epoch 10/10).  
+> 🔄 Checkpoint 5: Batch inference & evaluation in progress (threshold tuning and spatial analysis).  
+
+---
+
+> 🔗 Data on Google Drive: https://drive.google.com/drive/folders/1LekZLEqd4SlbBx_4DsO4C0qKodEHtEXL?usp=drive_link
