@@ -52,15 +52,37 @@ All data required for modeling has been successfully downloaded and processed.
 - [x] Submitted request to FIRMS using AOI (Feb–Mar 2021)
 - [ ] Convert downloaded CSV to binary fire/no-fire rasters
 
+ ## 🔧 Preprocessing Pipeline (Completed Phase 1)
+
+ ### 1. DEM → Slope & Aspect
+ - [x] Extract slope (°) and aspect (°) using NumPy gradients
+ - [x] Output raster aligned to 30 m resolution
+
+ ### 2. AOI Definition
+ - [x] GeoJSON + Bounding Box defined for Similipal region
+ - [x] KML backup created for FIRMS/Bhoonidhi uploads
+
+ ### 3. VIIRS Request
+ - [x] Submitted request to FIRMS using AOI (Feb–Mar 2021)
+ - [ ] Convert downloaded CSV to binary fire/no-fire rasters
+
+ ### 4. Feature Stacking & Tiling
+ - [x] Built full 8-band stack (`features_full_stack.tif`)
+ - [x] Tiled into 256×256 patches (`data/tiles/*.tif`)
+ - [ ] Compute normalization & one-hot encoding
+
 ---
 
 ## 🧠 Next Steps
 
-- [ ] Reclassify LULC into fuel scores
-- [ ] Stack all features (slope, aspect, fuel, weather, fire history)
-- [ ] Train U-Net on binary fire labels
-- [ ] Simulate fire spread using Cellular Automata
-- [ ] Build interactive visualization and animation tools
+1. **Normalize & Encode**  
+   - Compute train‐set means/stds and z-score normalize tiles  
+   - One-hot encode the fuel band  
+
+2. **Model Training**  
+   - Build a Dataset/DataLoader for 256×256 tiles  
+   - Train a U-Net for next-day fire probability  
+
 
 ---
 
@@ -82,3 +104,4 @@ All data required for modeling has been successfully downloaded and processed.
 ---
 
 > ✅ Checkpoint 2 Status: Data acquisition complete. Modeling phase begins.
+> ✅ Checkpoint 3 Status: Feature stacking & tiling complete. 
