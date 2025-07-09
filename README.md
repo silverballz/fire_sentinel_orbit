@@ -107,7 +107,13 @@ All data required for modeling has been successfully downloaded and processed.
 > – Rebuilt terrain and fuel masks from scratch  
 > – Final ignition raster visualized  
 > – Hillshade and NDVI overlays added  
-
+> ✅ **Day 2 – Checkpoint 2:**  
+> - ✅ Generated training tiles (256×256 patches) from raster stack  
+> - ✅ Created binary label masks from ignition points  
+> - ✅ One-hot encoded categorical features (fuel) and normalized continuous layers  
+> - ✅ Defined custom PyTorch `ForestFireDataset` to load .npy patches  
+> - ✅ Built a minimal U-Net model for fire/no-fire binary classification  
+> - ✅ Trained U-Net for 10 epochs (final loss: ~0.1460) using MPS backend on Mac 
 ---
 
 > 🔗 Data on Google Drive: https://drive.google.com/drive/folders/1LekZLEqd4SlbBx_4DsO4C0qKodEHtEXL?usp=drive_link
