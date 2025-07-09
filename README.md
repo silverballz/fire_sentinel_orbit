@@ -113,7 +113,15 @@ All data required for modeling has been successfully downloaded and processed.
 > - ✅ One-hot encoded categorical features (fuel) and normalized continuous layers  
 > - ✅ Defined custom PyTorch `ForestFireDataset` to load .npy patches  
 > - ✅ Built a minimal U-Net model for fire/no-fire binary classification  
-> - ✅ Trained U-Net for 10 epochs (final loss: ~0.1460) using MPS backend on Mac 
+> ✅ **Day 2 – Checkpoint 3:**  
+- ✅ Trained up to 2 epochs initially and visualized predictions  
+- ✅ Evaluated model predictions on tiles — thresholded outputs with optimal value (≈0.145)  
+- ✅ Computed prediction stats: min, max, avg-max  
+- ✅ Visualized predicted masks and compared with ground truth labels  
+- ✅ Saved binarized fire/no-fire `.tif` masks from U-Net predictions  
+- ✅ Evaluated performance metrics:  
+  - 🔹 Recall: 1.0000  
+
 ---
 
 > 🔗 Data on Google Drive: https://drive.google.com/drive/folders/1LekZLEqd4SlbBx_4DsO4C0qKodEHtEXL?usp=drive_link
