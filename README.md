@@ -10,6 +10,12 @@ Model the *next-day forest fire probability* and simulate *short-term fire sprea
 
 ---
 
+## 🌐 Deployed App
+
+🚀 **Live Demo**: [corbett-is-on-fire.streamlit.app](https://corbett-is-on-fire.streamlit.app)
+
+---
+
 ## 📍 Study Area: Similipal Biosphere Reserve, Odisha, India
 
 - **Bounding Box**:  
@@ -64,7 +70,7 @@ All data required for modeling has been successfully downloaded and processed.
 
 - [x] Verified and resampled slope, aspect, fuel maps  
 - [x] Normalized raster transforms and resolutions  
-- [x] Currently resolving ERA5 patching to 30m grid  
+- [x] Patching ERA5 onto 30m grid  
 
 ---
 
@@ -85,6 +91,7 @@ All data required for modeling has been successfully downloaded and processed.
 - Python, NumPy, Rasterio, GeoPandas, Matplotlib  
 - GDAL, Cartopy, PyTorch, ERA5 climate APIs  
 - Geoportals: Bhoonidhi, ESA WorldCover, NASA FIRMS, Copernicus CDS  
+- Streamlit, Pillow (for the deployed app)
 
 ---
 
@@ -103,16 +110,19 @@ All data required for modeling has been successfully downloaded and processed.
 > ✅ Checkpoint 3: Normalization & encoding complete.  
 > ✅ Checkpoint 4: Model training complete (Epoch 10/10).  
 > ❌ Checkpoint 5: Model scrapped due to poor performance.  
+
 > ✅ **Day 2 – Checkpoint 1:**  
 > – Rebuilt terrain and fuel masks from scratch  
 > – Final ignition raster visualized  
 > – Hillshade and NDVI overlays added  
+
 > ✅ **Day 2 – Checkpoint 2:**  
 > - ✅ Generated training tiles (256×256 patches) from raster stack  
 > - ✅ Created binary label masks from ignition points  
 > - ✅ One-hot encoded categorical features (fuel) and normalized continuous layers  
 > - ✅ Defined custom PyTorch `ForestFireDataset` to load .npy patches  
 > - ✅ Built a minimal U-Net model for fire/no-fire binary classification  
+
 > ✅ **Day 2 – Checkpoint 3:**  
 > - ✅ Trained up to 2 epochs initially and visualized predictions  
 > - ✅ Evaluated model predictions on tiles — thresholded outputs with optimal value (≈0.145)  
@@ -120,12 +130,34 @@ All data required for modeling has been successfully downloaded and processed.
 > - ✅ Visualized predicted masks and compared with ground truth labels  
 > - ✅ Saved binarized fire/no-fire `.tif` masks from U-Net predictions  
 > - ✅ Evaluated performance metrics:  
-  - 🔹 Recall: 1.0000  
-✅ **Day 2 – Checkpoint 4:** 
+>   - 🔹 Recall: 1.0000  
+
+> ✅ **Day 2 – Checkpoint 4:**  
 > - ✅ Completed Cellular Automata-based fire spread simulation  
 > - ✅ Simulated fire progression at 1h, 2h, 3h, 4h, and 5h intervals  
 > - ✅ Saved spread masks as GeoTIFFs and logged burned area counts per timestep  
-> - ✅ Generated animated GIF over colored DEM and fuel overlays for visualizing spread dynamics
+> - ✅ Generated animated GIF over colored DEM and fuel overlays for visualizing spread dynamics  
+
+---
+
+## 🖼️ Final Streamlit App Overview
+
+The Streamlit web app serves as a demo of both stages:
+
+### 📍 Stage 1: Fire Probability Prediction
+- AI-driven U-Net model predicts ignition-prone zones based on geospatial and meteorological inputs.
+- Resulting fire probability map is thresholded and visualized as a binary mask.
+
+### 🌐 Stage 2: Fire Spread Simulation
+- A physics-inspired Cellular Automata algorithm simulates fire propagation using:
+  - Terrain slope
+  - Fuel availability
+  - Wind direction
+
+- The animated fire spread progression is overlaid on DEM + fuel layers for intuitive understanding.
+
+🛰️ Hosted App: [corbett-is-on-fire.streamlit.app](https://corbett-is-on-fire.streamlit.app)
+
 ---
 
 > 🔗 Data on Google Drive: https://drive.google.com/drive/folders/1LekZLEqd4SlbBx_4DsO4C0qKodEHtEXL?usp=drive_link
