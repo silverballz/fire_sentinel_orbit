@@ -30,48 +30,60 @@ All data required for modeling has been successfully downloaded and processed.
 | Dataset                   | Source                        | Format   | Status           |
 |---------------------------|-------------------------------|----------|------------------|
 | Digital Elevation Model   | Bhoonidhi (CartoDEM v3 R1)    | .tif     | ✅ Downloaded    |
-| Slope & Aspect            | Derived from DEM              | .tif     | ✅ Generated     |
-| LULC / Fuel Raster        | ESA WorldCover (10 m, 2020)   | .tif     | ✅ Downloaded    |
-| VIIRS Fire Points         | NASA FIRMS (Feb–Mar 2021)     | .csv     | ✅ Processed     |
-| ERA5 Weather Data         | Copernicus CDS (Hourly)       | .grib    | ✅ Downloaded    |
+| Slope & Aspect            | Derived via `gdaldem`         | .tif     | ✅ Generated     |
+| LULC / Fuel Raster        | ESA WorldCover (10 m, 2020)   | .tif     | ✅ Reclassified  |
+| VIIRS Fire Points         | NASA FIRMS (Feb–Mar 2021)     | .csv     | ✅ Rasterized    |
+| ERA5 Weather Data         | Copernicus CDS (Hourly)       | .grib    | ✅ Parsed (u,v,t) |
 
 ---
 
 ## 🔧 Preprocessing Pipeline
 
 ### 1. DEM → Slope & Aspect  
-- [x] Extract slope & aspect using NumPy gradients  
-- [x] Save aligned to 30 m grid  
+- [x] Used `gdaldem slope` and `gdaldem aspect`  
+- [x] Reprojected and clipped to AOI  
+- [x] Created binary slope fire mask (15°–45°)
 
-### 2. AOI Definition  
-- [x] GeoJSON + Bounding Box for Similipal  
-- [x] KML backup for uploads  
+### 2. Fuel Mask from LULC  
+- [x] Mapped LULC classes to fuel load levels  
+- [x] Created `fuel_mask_final.tif`  
 
-### 3. VIIRS Request  
-- [x] Submitted to FIRMS  
-- [x] Rasterized CSV → `labels_full.tif`  
+### 3. Wind-Aligned Aspect Zones  
+- [x] Derived u10, v10 from ERA5  
+- [x] Translated wind direction into zones  
+- [x] Created aspect-wind-aligned binary mask  
 
-### 4. Feature Stacking & Tiling  
-- [x] Built 8-band stack (`features_full_stack.tif`)  
-- [x] Tiled into 256×256 patches (`data/tiles/*.tif`)  
-
-### 5. Normalization & Encoding  
-- [x] Computed train-set mean/std → `norm_stats.json`  
-- [x] Z-score normalized & one-hot encoded fuel → `data/tiles_norm/{train,val}/`  
+### 4. Ignition Points Map  
+- [x] Combined masks (slope, fuel, aspect-wind)  
+- [x] Created final ignition probability raster  
+- [x] Visualized over NDVI and hillshade  
 
 ---
 
-## 🧠 Model Training (Next-Day Fire Probability)
+## 📦 Feature Stack (Day 2 Checkpoint 1)
 
-- [x] DataLoader & U-Net setup  
-- [x] Training loop executed (Epochs 1–10)  
-- [x] Model weights saved (`models/unet_final.pth`)  
+- [x] Verified and resampled slope, aspect, fuel maps  
+- [x] Normalized raster transforms and resolutions  
+- [x] Currently resolving ERA5 patching to 30m grid  
+
+---
+
+## 🧠 Model Status
+
+### ❌ Day 1: Scrapped Model
+- Original U-Net pipeline was dropped due to poor signal in labels and lack of clean separation in class predictions.
+
+### ✅ New Direction (Day 2)
+- 🔄 Working toward a hybrid model:
+  - Rule-based ignition zone
+  - Cellular Automata for short-term spread
 
 ---
 
 ## 🛠 Tools & Libraries
 
-- Python, NumPy, Rasterio, GeoPandas, PyTorch  
+- Python, NumPy, Rasterio, GeoPandas, Matplotlib  
+- GDAL, Cartopy, PyTorch, ERA5 climate APIs  
 - Geoportals: Bhoonidhi, ESA WorldCover, NASA FIRMS, Copernicus CDS  
 
 ---
@@ -90,7 +102,11 @@ All data required for modeling has been successfully downloaded and processed.
 > ✅ Checkpoint 2: Feature stacking & tiling complete.  
 > ✅ Checkpoint 3: Normalization & encoding complete.  
 > ✅ Checkpoint 4: Model training complete (Epoch 10/10).  
-> 🔄 Checkpoint 5: Batch inference & evaluation in progress (threshold tuning and spatial analysis).  
+> ❌ Checkpoint 5: Model scrapped due to poor performance.  
+> ✅ **Day 2 – Checkpoint 1:**  
+> – Rebuilt terrain and fuel masks from scratch  
+> – Final ignition raster visualized  
+> – Hillshade and NDVI overlays added  
 
 ---
 
