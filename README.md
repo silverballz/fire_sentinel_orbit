@@ -114,14 +114,18 @@ All data required for modeling has been successfully downloaded and processed.
 > - ✅ Defined custom PyTorch `ForestFireDataset` to load .npy patches  
 > - ✅ Built a minimal U-Net model for fire/no-fire binary classification  
 > ✅ **Day 2 – Checkpoint 3:**  
-- ✅ Trained up to 2 epochs initially and visualized predictions  
-- ✅ Evaluated model predictions on tiles — thresholded outputs with optimal value (≈0.145)  
-- ✅ Computed prediction stats: min, max, avg-max  
-- ✅ Visualized predicted masks and compared with ground truth labels  
-- ✅ Saved binarized fire/no-fire `.tif` masks from U-Net predictions  
-- ✅ Evaluated performance metrics:  
+> - ✅ Trained up to 2 epochs initially and visualized predictions  
+> - ✅ Evaluated model predictions on tiles — thresholded outputs with optimal value (≈0.145)  
+> - ✅ Computed prediction stats: min, max, avg-max  
+> - ✅ Visualized predicted masks and compared with ground truth labels  
+> - ✅ Saved binarized fire/no-fire `.tif` masks from U-Net predictions  
+> - ✅ Evaluated performance metrics:  
   - 🔹 Recall: 1.0000  
-
+✅ **Day 2 – Checkpoint 4:** 
+> - ✅ Completed Cellular Automata-based fire spread simulation  
+> - ✅ Simulated fire progression at 1h, 2h, 3h, 4h, and 5h intervals  
+> - ✅ Saved spread masks as GeoTIFFs and logged burned area counts per timestep  
+> - ✅ Generated animated GIF over colored DEM and fuel overlays for visualizing spread dynamics
 ---
 
 > 🔗 Data on Google Drive: https://drive.google.com/drive/folders/1LekZLEqd4SlbBx_4DsO4C0qKodEHtEXL?usp=drive_link
